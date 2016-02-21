@@ -8,8 +8,8 @@
 # Set the seed: I prototype plots on a subsetted data frame before
 # running it on the actual data set.
 set.seed(0123456789)
-Use.Prototype <- TRUE
-
+Use.Prototype <- FALSE
+options(scipen = 9999)
 
 # ---------- Load Libraries
 
@@ -22,7 +22,11 @@ Is.Installed <- function(lib) {
 # I'm using dplyr because it's nice for manipulating data frames
 # during the exploratory phase.
 libs <- c(
-  'dplyr'
+  'dplyr',
+  'lattice',
+  'ggplot2',
+  'gridExtra',
+  'scales'
 )
 
 # Loop through libs, loading/installing as necessary
