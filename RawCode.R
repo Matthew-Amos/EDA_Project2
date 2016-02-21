@@ -1,5 +1,4 @@
 # ---------- Q1
-
 ## Loads data set & project settings
 ## Code available at https://github.com/equinaut/EDA_Project2
 source("LoadProject.R")
@@ -107,7 +106,7 @@ if(!Use.Prototype) {
 ## Code available at https://github.com/equinaut/EDA_Project2
 source("LoadProject.R")
 
-# Courtesy of Ramnath & Ricardo Saporta
+# lm_eqn Courtesy of Ramnath & Ricardo Saporta
 lm_eqn = function(m) {
 
   l <- list(a = format(coef(m)[1], digits = 2),
@@ -124,6 +123,15 @@ lm_eqn = function(m) {
 }
 
 if(!Use.Prototype) {
+  # Linear Model Labels
+  q3.lmlabs <- data.frame(
+    type = c('NON-ROAD','NONPOINT','ON-ROAD','POINT'),
+    labs = c(
+      lm_eqn(lm(Emissions ~ year, filter(q2.filtered, type == 'NON-ROAD'))),
+      lm_eqn(lm(Emissions ~ year, filter(q2.filtered, type == 'NONPOINT'))),
+      lm_eqn(lm(Emissions ~ year, filter(q2.filtered, type == 'ON-ROAD'))),
+      lm_eqn(lm(Emissions ~ year, filter(q2.filtered, type == 'POINT')))
+    ))
 
   q3.dfSummary <- dfMerged %>%
     filter(fips == "24510") %>%
@@ -134,16 +142,6 @@ if(!Use.Prototype) {
 
   # FINAL PLOT CODE
   png(filename = "plot3.png")
-
-  # Linear Model Labels
-  q3.lmlabs <- data.frame(
-    type = c('NON-ROAD','NONPOINT','ON-ROAD','POINT'),
-    labs = c(
-    lm_eqn(lm(Emissions ~ year, filter(q2.filtered, type == 'NON-ROAD'))),
-    lm_eqn(lm(Emissions ~ year, filter(q2.filtered, type == 'NONPOINT'))),
-    lm_eqn(lm(Emissions ~ year, filter(q2.filtered, type == 'ON-ROAD'))),
-    lm_eqn(lm(Emissions ~ year, filter(q2.filtered, type == 'POINT')))
-  ))
 
   ggplot(q3.dfSummary, aes(x = year, y = Emissions, colour = type)) +
     geom_point() +
@@ -160,7 +158,6 @@ if(!Use.Prototype) {
 
 
 # ---------- Q4
-
 ## Loads data set & project settings
 ## Code available at https://github.com/equinaut/EDA_Project2
 source("LoadProject.R")
@@ -217,7 +214,6 @@ if(Use.Prototype) {
 
 
 # ---------- Q5
-
 ## Loads data set & project settings
 ## Code available at https://github.com/equinaut/EDA_Project2
 source("LoadProject.R")
@@ -249,7 +245,6 @@ if(!Use.Prototype) {
 
 
 # ---------- Q6
-
 ## Loads data set & project settings
 ## Code available at https://github.com/equinaut/EDA_Project2
 source("LoadProject.R")
