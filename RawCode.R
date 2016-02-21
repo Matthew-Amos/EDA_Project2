@@ -242,7 +242,7 @@ if(!Use.Prototype) {
     geom_point(size = 5) +
     labs(title = "Baltimore City Motor Vehicle Emissions (Including CNG)") +
     geom_smooth(method = 'lm') +
-    geom_text(aes(x = 2000, y = -100, label = lm_eqn(q5.lm)), parse = T)
+    geom_text(aes(x = 2003, y = -100, label = lm_eqn(q5.lm)), parse = T)
 
   dev.off()
 }
